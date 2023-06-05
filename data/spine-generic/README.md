@@ -1,0 +1,2 @@
+This folder contains subjects from the spine-generic public database. This dataset is open-source and can be found [here](https://github.com/spine-generic/data-single-subject). The data is originally formatted using the BIDS convention and can be installed locally using `git-annex`. The installed procedure is described [here](https://github.com/spine-generic/data-single-subject#download). 
+ 
