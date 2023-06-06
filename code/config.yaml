@@ -1,0 +1,38 @@
+SETTINGS:
+  DIRECTORY: '/home/GRAMES.POLYMTL.CA/u114716/coursework/brain-hack/data/sci-zurich-rpi/sub-zh57' 
+  PROJECT_NAME: 'INRs'
+  GROUP_NAME: 'sci-zurich'
+  RUN_NAME: 'SIREN=512_sag-0.57-2.75_sag_T2w_0.75'
+  GPU_DEVICE: 3
+  NUM_WORKERS: 16
+
+DATASET:
+  SUBJECT_ID: 'sub-zh57' 
+  SESSION_ID: 'ses-01' 
+  VIEW1_LABEL: 'sag_T2w_0.57'  
+  VIEW2_LABEL: 'sag_T2w' 
+  GT_LABEL: 'sag_T2w_0.75' 
+
+TRAINING:
+  SEED: 12
+  BATCH_SIZE: 1024
+  LR: 0.0004
+  EPOCHS: 50
+  OPTIM: 'Adam'
+  SHUFFELING: True
+  LOSS: 'MSELoss' # "L1LOSS"
+
+MODEL:
+  # GENERAL
+  NUM_LAYERS: 4
+  HIDDEN_CHANNELS: 1024
+  DROPOUT: 0.0
+  # ENCODINGS
+  USE_SIREN: True
+  USE_WIRE_REAL: False
+  USE_FF: False
+
+FOURIER:
+  MAPPING_SIZE: 512 # each per cos/sine
+  FF_SCALE: 4.0
+  FF_FACTOR: 1.0
