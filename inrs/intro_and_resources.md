@@ -11,19 +11,21 @@ In traditional deep learning (DL), data are often represented as arrays [1]. For
 
 The basic building block of INRs is a multi-layer perceptron (or, a fully connected neural network) that takes as input a 3D _(x,y,z)_ coordinate and outputs and intensity value at that coordinate. Typically, some transformations are applied to the input coordinates such as sinusoidal activations [3], Fourier feature mapping [4], and positional encodings [5] so the high frequency content in the images can be recovered. 
 
-TODO: add figure of relu mlp taken from youtube
+<p align="center">
+  <img width="393" alt="Screen Shot 2023-06-07 at 4 44 02 PM" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/e302a1ba-24e3-4e21-ae34-ee7f1e6328e7">
+  </p> 
 
-A major issue when dealing with fully connected, ReLU-based neural networks (NNs) is their inability to model high-frequency content in an image/object, hence resulting in blurred outputs. This phenomenon is referred to as the "spectral bias" [6] of NNs - a consequence of having over-parameterized networks that prioritize learning simple patterns from the inputs in the hopes of improving generalization on unseen data. A relatively well-known solution lies in using Fourier feature (FF) mapping [4], which projects the input coordinates to a higher dimensional Fourier space, before passing them through the NN. This simple transformation enables learning high-frequency functions and reconstructs sharp outputs. The figure below shows the resulting reconstructions with and without FF mapping. 
-
-TODO: Add Figure 1 from the paper. 
+A major issue when dealing with fully connected, ReLU-based neural networks (NNs) is their inability to model high-frequency content in an image/object, hence resulting in blurred outputs. This phenomenon is referred to as the "spectral bias" [6] of NNs - a consequence of having over-parameterized networks that prioritize learning simple patterns from the inputs in the hopes of improving generalization on unseen data. A relatively well-known solution lies in using Fourier feature (FF) mapping [4], which projects the input coordinates to a higher dimensional Fourier space, before passing them through the NN. This simple transformation enables learning high-frequency functions and reconstructs sharp outputs. 
+<!-- The figure below shows the resulting reconstructions with and without FF mapping.  -->
 
 
 ### INRs for Super-resolution
 
 One of the earliest works using INRs for MRI super-resolution reconstruction used 3 low-resolution images (one each of sagittal, coronal, and axial) for reconstructing a single high-resolution image [7]. Another recent work [8] used two rigidly-registered contrasts for a given subject for super-resolution. The main idea here is to use the various images (typically with different spatial resolutions and fields-of-view) as a means of mutual information transfer that is ultimately useful for super-resolution reconstruction. Follwoing these approaches, the figure below shows the method used for spinal cord MRI super-resolution in this project. 
 
-TODO: Add figure from slides
-
+<p align="center">
+<img width="900" alt="Screen Shot 2023-06-07 at 4 51 41 PM" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/90a3e4cc-f979-4fc4-adb1-d316c3be05e2">
+</p>
 
 ### Further Reading on Medical Applications
 
