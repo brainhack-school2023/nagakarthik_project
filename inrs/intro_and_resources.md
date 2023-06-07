@@ -27,7 +27,19 @@ One of the earliest works using INRs for MRI super-resolution reconstruction use
 <img width="900" alt="Screen Shot 2023-06-07 at 4 51 41 PM" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/90a3e4cc-f979-4fc4-adb1-d316c3be05e2">
 </p>
 
+Given an 0.8mm isotropic T2w image as input, two downsampled views are created. The first view is downsampled with a factor of 5 along the _axial_ plane resulting in a `0.8 x 0.8 x 4.0 mm^3` image and the second view is downsampled with a factor 5 along the sagittal plane resulting in a `4.0 x 0.8 x 0.8 mm^3` image. Then, the sets of 3D coordinates corresponding to each view are concatenated. Following the literature, the coordinates are projected to a Fourier space using the mapping dimension `L=256`, which are then passed through the NN. The model is supervised by the Mean-squared error loss between the predicted intensity and the ground-truth intensity of the 0.8 mm isotropic image.
+
+
 ### Further Reading on Medical Applications
+
+Here are some more references for various categories: 
+
+* Segmentation
+  * [Implicit Neural Representations for Medical Imaging Segmentation](https://link.springer.com/chapter/10.1007/978-3-031-16443-9_42) (Khan et al. 2022)
+* Registration
+  * [Implicit Neural Representations for Deformable Image Registration](https://proceedings.mlr.press/v172/wolterink22a/wolterink22a.pdf) (Wolterink et al. 2022)
+  * [Diffeomorphic Image Registration with Neural Velocity Field](https://openaccess.thecvf.com/content/WACV2023/papers/Han_Diffeomorphic_Image_Registration_With_Neural_Velocity_Field_WACV_2023_paper.pdf) (Han et al. 2023)
+
 
 ### References
 1. [From data to functa: Your data point is a function and you can treat it like one](https://arxiv.org/abs/2201.12204) (Dupont et. al. 2022)
