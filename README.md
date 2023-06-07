@@ -1,6 +1,9 @@
 ## Super-resolution Reconstruction of Spinal Cord MRI with Implicit Neural Representations
 
-TODO: Add a picture
+<p align="center">
+   <img width="900" alt="spinal-cord-inrs" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/fd185c4a-c886-45d7-831a-928daa6728b9">
+</p>
+
 
 ### About Me
 
@@ -26,8 +29,9 @@ Acquisition of MR images strikes a delicate balance between the scan time, spati
 
 Intuitively, going from discrete to continuous representations is not uncommon. For instance, 1D discrete time-signals are approximations of a continuous function sampled at discrete points in time. For images, this implies transitioning from pixels with discrete boundaries to (continuous) RGB values where the boundaries of pixels are no longer visible as shown in the figure below. 
 
-TODO: Add pixels figure
-
+<p align="center">
+<img width="450" alt="d2c_pixels" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/531f1b26-4290-4ca3-9b8b-2931f72ced12">
+</p>
 
 
 ### Objectives
