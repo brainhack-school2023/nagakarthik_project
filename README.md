@@ -25,7 +25,7 @@ Acquisition of MR images strikes a delicate balance between the scan time, spati
 
 **Super-resolution** &ensp; Given multiple low-resolution images as inputs, can we combine them in a way that generates a high-resolution output? Does this method improve the resolution and the acquistion time over directly acquiring a high-resolution image? While several methods, for instance, iterative back projection, regularized least squares, etc., exist in the literature, this project explores INRs for reconstructing high-resolution images. 
 
-**INRs**  &ensp; Implicit neural representations present a novel way of parameterizing images. Instead of considering images as a discrete grid-based representations (of an object/scene), INRs provide a powerful alternative for parameterizing images as continuous functions that map a 3D coordinate to its intensity value at that coordinate. As such continuous functions are analytically intractable, INRs use neural networks as an approximation. 
+**INRs**  &ensp; Implicit neural representations present a novel way of parameterizing images. Instead of considering images as a discrete grid-based representations (of an object/scene), INRs provide a powerful alternative for parameterizing images as continuous functions that map a 3D coordinate to its intensity value at that coordinate. As such continuous functions are analytically intractable, INRs use neural networks for approximating the functions. 
 
 Intuitively, going from discrete to continuous representations is not uncommon. For instance, 1D discrete time-signals are approximations of a continuous function sampled at discrete points in time. For images, this implies transitioning from pixels with discrete boundaries to (continuous) RGB values where the boundaries of pixels are no longer visible as shown in the figure below. 
 
@@ -45,9 +45,9 @@ Given the background on super-resolution and INRs, the objectives of my project 
 
 ### Data
 
-The Spine Generic Public Database [3,4] was used in this project. This is a BIDS-standarized multi-site dataset consisting of 6 contrasts from a single healthy subject acquired using the spine-generic protocol. The dataset is open-source and can be downloaded via git-annex. The installation procedure is described in [README](https://github.com/brainhack-school2023/nagakarthik_project/blob/main/data/spine-generic/README.md) inside the `data/` folder. 
+The Spine Generic Public Database [3,4] was used in this project. This is a BIDS-standarized multi-site dataset consisting of 6 contrasts from a single healthy subject acquired using the spine-generic protocol. The dataset is open-source and can be downloaded via git-annex. The installation procedure is described in [README](https://github.com/brainhack-school2023/nagakarthik_project/blob/main/data/spine-generic/README.md) inside the `data/` folder along with the specific subjects used. 
 
-In the context of this project, only the T2w contrast was used as it is an isotropic image. Typically, super-resolution methods tend to use isotropic images as the ground-truth, which helps in quantifying the reconstruction accuracy. 
+In the context of this project, only the T2w contrast was used as it is an isotropic image. Typically, super-resolution methods tend to use isotropic images as they could be used as the ground-truth, which helps in quantifying the reconstruction accuracy. 
 
 
 ### Tools 
@@ -68,20 +68,47 @@ The following tools were used in the project:
 
 The deliverables for this project are:
 
-* Introduction to INRs and references to existing literature.
-* Data and preprocessing scripts used. 
-* Code and the related documentation for training an INR.
-* Jupyter notebook containing the ablation study analysis.
-
+* Introduction to INRs and references to existing literature --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/blob/main/inrs/intro_and_resources.md#inrs-for-super-resolution)
+* Data and preprocessing scripts used --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/data) and [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/code/preprocessing)
+* Code and the related documentation for training an INR --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/code)
+* Jupyter notebook containing the ablation study analysis --> can be found 
 
 
 ### Results 
 
+This section presents the super-resolution results and the ablation study analysis. A brief explanation of the method including the inputs and the model used, could be found [here](https://github.com/brainhack-school2023/nagakarthik_project/blob/main/inrs/intro_and_resources.md#inrs-for-super-resolution).
+
+
+#### High-resolution images of the Spinal Cord
+
+The figure below shows a comparison between the original (ground-truth, GT) image (left) and the reconstructed image (right), both at 0.8 mm isotropic resolution. Focusing on the zoomed patch, we can observe that the prediction is smoother compared to the original image. 
+
+TODO: add figure from slide 
+
+
+One of the advantages of INRs is that images can be reconstructed at an arbitrary resolution. This means that one can generate a high resolution image that is not bounded by the resolution of the GT image. The figure below shows the model's prediction of 0.5 mm^3 isotropic image. For such outputs, it is important to note that one can only perform a visual assessment of the reconstruction quality as a quantitative assessment is infeasible due to the lack of GT image.
+
+
+
+#### Ablation Study: Effect of the Fourier feature mapping dimension on the reconstruction accuracy
+
+A crucial step when training a NN to reconstruct a high-resolution image is the projection of the 3D coordinates to a higher dimensional space using Fourier feature mapping. As explained in the [methods section](https://github.com/brainhack-school2023/nagakarthik_project/blob/main/inrs/intro_and_resources.md#inrs-for-super-resolution), such a projection helps in learning (and reconstructing) the high-frequency content in the image. Naturally, the dimensionality of the Fourier feature space plays an importat role in the quality of the reconstruction. Therefore, the purpose of this ablation study is to tweak this parameter and observe its downstream effect on the reconstruction accuracy. Two metrics, namely, structural similarity index (SSIM) and peak signal-to-noise ratio (PSNR), are used as quantitative metrics. 
+
+**SSIM** &ensp; It is a metric used to measure the similarity between two images. It is designed to evaluate the perceptual quality of an image by comparing its structural information with a reference image. SSIM takes into account the luminance, contrast, and structural similarities between corresponding patches of the images.
+
+**PSNR** &ensp; It is a commonly used metric to measure the quality or fidelity of a reconstructed or compressed image or video compared to the original, reference signal. It quantifies the ratio between the maximum possible power of a signal (usually taken as the maximum possible pixel value) and the distortion introduced by the compression or reconstruction process. It must be noted that PSNR is based solely on pixel-wise differences and does not always correlate perfectly with human perception. Typically, metrics such as SSIM, are often used in conjunction with PSNR to provide a more comprehensive assessment of visual quality.
+
+The plots below show the SSIM (left) and PSNR (right) values as function of the dimensionality of the Fourier features (higher the metrics, the better). We observe that the reconstruction accuracy increases when increasing the Fourier feature dimensionality in both cases. 
+
+
+
+TODO: add plots
+
+
 
 ### Conclusions
 
-
-### Limitations and Open Questions 
+Neural implicit representations present a powerful alternative for parameterizing discrete voxel-grid based 3D images. The parameterization is done by learning (approximating) a continuous function that maps the input coordinate to its intensity value at that image. Based on two downsampled views of the same contrast, the model was trained to reconstruct a high-resolution image using voxel-wise mean-squared error as the loss function. Lastly, an ablation study on the effect of the dimensionality of Fourier features showed that projecting the input coordinates to higher dimensions improves the reconstruction accuracy and results in better high-resolution images.  
 
 
 ### References
