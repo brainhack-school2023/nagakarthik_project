@@ -17,17 +17,17 @@ Hello, I am Naga Karthik, a second-year PhD student at Polytechnique Montreal. M
 
 ## Project Summary
 
-This project explores the idea of using implicit neural representations (INRs) for reconstruction super-resolution (or, high-resolution) spinal cord MR images. 
+This project explores the idea of using implicit neural representations (INRs) for reconstructing super-resolution (or, high-resolution) spinal cord MR images. 
 
 
 ### Introduction
-Acquisition of MR images strikes a delicate balance between the scan time, spatial resolution of the image, and the signal-to-noise (SNR) ratio [1]. While images with isotropic resolution are ideal, they cannot always be acquired due to constraints such as patients' condition, motion artifacts, possibly limited MRI resources, etc. [2]. Moreover, improving spatial resolution comes at the high cost of lowering SNR and/or increasing the acquisition time. As a result, it is a common practice to require multiple low-resolution anisotropic images with high in-plane resolution. 
+Acquisition of MR images strikes a delicate balance between scanning time, spatial resolution of the image, and the signal-to-noise (SNR) ratio [1]. While images with isotropic resolution are ideal, they cannot always be acquired due to constraints such as patients' condition, motion artifacts, possibly limited MRI resources, etc. [2]. Moreover, improving spatial resolution comes at the high cost of lowering SNR and/or increasing the acquisition time. As a result, it is a common practice to acquire multiple low-resolution anisotropic images with high in-plane resolutions. 
 
-**Super-resolution** &ensp; Given multiple low-resolution images as inputs, can we combine them in a way that generates a high-resolution output? Does this method improve the resolution and the acquistion time over directly acquiring a high-resolution image? While several methods, for instance, iterative back projection, regularized least squares, etc., exist in the literature, this project explores INRs for reconstructing high-resolution images. 
+**Super-resolution** &ensp; Given multiple low-resolution images as inputs, can we combine them in a way that generates a high-resolution output? Does this method improve the resolution and the acquistion time over directly acquiring a high-resolution image? While several methods, for instance, iterative back projection, regularized least squares, etc., exist in the literature, this project explores INRs for super-resolution. 
 
-**INRs**  &ensp; Implicit neural representations present a novel way of parameterizing images. Instead of considering images as a discrete grid-based representations (of an object/scene), INRs provide a powerful alternative for parameterizing images as continuous functions that map a 3D coordinate to its intensity value at that coordinate. As such continuous functions are analytically intractable, INRs use neural networks for approximating the functions. 
+**INRs**  &ensp; Implicit neural representations present a novel way of parameterizing images. Instead of considering images as discrete grid-based representations (of an object/scene), INRs provide a powerful alternative for parameterizing images as continuous functions that map a 3D coordinate to its intensity value at that coordinate. As such continuous functions are analytically intractable, INRs use neural networks for approximating them. 
 
-Intuitively, going from discrete to continuous representations is not uncommon. For instance, 1D discrete time-signals are approximations of a continuous function sampled at discrete points in time. For images, this implies transitioning from pixels with discrete boundaries to (continuous) RGB values where the boundaries of pixels are no longer visible as shown in the figure below. 
+Intuitively, going from discrete to continuous representations is not uncommon. For instance, 1D discrete time-signals are approximations of a continuous function sampled at discrete points in time. For images, this implies transitioning from pixels with discrete boundaries to (continuous) RGB values where the boundaries of pixels are no longer visible and the transitions are smooth as shown in the figure below. 
 
 <p align="center">
 <img width="450" alt="d2c_pixels" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/531f1b26-4290-4ca3-9b8b-2931f72ced12">
@@ -38,14 +38,14 @@ Intuitively, going from discrete to continuous representations is not uncommon. 
 
 Given the background on super-resolution and INRs, the objectives of my project were as follows: 
 
-1. Understand the concept of implicit representations of images and their potential applications. ✅
+1. Understand the concept of implicit representations of images and their potential applications in the medical domain. ✅
 2. Train a neural network (particuarly, a multi-layer perceptron) to reconstruct a high-resolution MRI of a spinal cord given two different low-resolution views as inputs. ✅
-3. Perform an ablation study on the neural network parameters to analyse its effect on the reconstruction accuracy. ✅
+3. Perform an ablation study on the neural network parameters to analyse their effect on the reconstruction accuracy. ✅
 
 
 ### Data
 
-The Spine Generic Public Database [3,4] was used in this project. This is a BIDS-standarized multi-site dataset consisting of 6 contrasts from a single healthy subject acquired using the spine-generic protocol. The dataset is open-source and can be downloaded via git-annex. The installation procedure is described in [README](https://github.com/brainhack-school2023/nagakarthik_project/blob/main/data/spine-generic/README.md) inside the `data/` folder along with the specific subjects used. 
+The Spine Generic Public Database [3,4] was used in this project. This is a BIDS-standarized multi-site dataset consisting of 6 contrasts from a single healthy subject acquired using the spine-generic protocol. The dataset is open-source and can be downloaded via `git-annex`. The installation procedure is described in the [README](https://github.com/brainhack-school2023/nagakarthik_project/blob/main/data/spine-generic/README.md) inside the `data/` folder along with the specific subjects used. 
 
 In the context of this project, only the T2w contrast was used as it is an isotropic image. Typically, super-resolution methods tend to use isotropic images as they could be used as the ground-truth, which helps in quantifying the reconstruction accuracy. 
 
@@ -57,7 +57,7 @@ The following tools were used in the project:
 * `bash` for all terminal-related commands and running python scripts from the command-line
 * `git` and `GitHub` for version control
 * `git-annex` for downloading the spine-generic dataset
-* `python` for all the code. Notable packages:
+* `python` for all the code. Notable packages include:
    * `scikit-learn` for computing reconstruction accuracy metric
    * `nibabel` and `nilearn` for data I/O
    * `pytorch` for training INRs (i.e. deep learning)
@@ -68,7 +68,7 @@ The following tools were used in the project:
 
 The deliverables for this project are:
 
-* Introduction to INRs and references to existing literature --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/blob/main/inrs/intro_and_resources.md#inrs-for-super-resolution)
+* Introduction to INRs and references to existing literature --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/blob/main/inrs/intro_and_resources.md)
 * Data and preprocessing scripts used --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/data) and [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/code/preprocessing)
 * Code and the related documentation for training an INR --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/code)
 * Jupyter notebook containing the ablation study analysis --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/notebook)
@@ -87,7 +87,7 @@ The figure below shows a comparison between the original (ground-truth, GT) imag
 <img width="800" alt="Screen Shot 2023-06-07 at 10 50 38 PM" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/cbbef089-756e-4562-ae76-ed02ecec729b">
 </p>
 
-One of the advantages of INRs is that images can be reconstructed at an arbitrary resolution. This means that one can generate a high resolution image that is not bounded by the resolution of the GT image. The figure below shows the model's prediction of 0.5 mm^3 isotropic image. For such outputs, it is important to note that one can only perform a visual assessment of the reconstruction quality as a quantitative assessment is infeasible due to the lack of GT image.
+One of the advantages of INRs is that images can be reconstructed at an arbitrary resolution. This means that one can generate a high resolution image that is not bounded by the resolution of the GT image. The figure below shows the model's prediction of `0.5 mm^3` isotropic image. For such outputs, it is important to note that one can only perform a visual assessment of the reconstruction quality because a quantitative assessment is infeasible due to the lack of GT image.
 
 <p align="center">
 <img width="500" alt="iso0 5" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/f784b057-1d4c-4007-933b-df82f5a58efe">
@@ -115,8 +115,11 @@ The plots below show the SSIM (left) and PSNR (right) values as function of the 
 
 ### Conclusions
 
-Neural implicit representations present a powerful alternative for parameterizing discrete voxel-grid based 3D images. The parameterization is done by learning (approximating) a continuous function that maps the input coordinate to its intensity value at that image. Based on two downsampled views of the same contrast, the model was trained to reconstruct a high-resolution image using voxel-wise mean-squared error as the loss function. Lastly, an ablation study on the effect of the dimensionality of Fourier features showed that projecting the input coordinates to higher dimensions improves the reconstruction accuracy and results in better high-resolution images.  
+Neural implicit representations present a powerful alternative for parameterizing discrete voxel-grid based 3D images. The parameterization is done by learning (approximating) a continuous function that maps the input coordinate to its intensity value at that coordinate. Based on two downsampled views of the same contrast on different anatomical planes, the model was trained to reconstruct a high-resolution image using voxel-wise mean-squared error as the loss function. Lastly, an ablation study on the effect of the dimensionality of Fourier features showed that projecting the input coordinates to higher dimensions improves the reconstruction accuracy and results in better high-resolution images.  
 
+### Acknowledgements
+
+I would like to thank the course instructor Prof. Eva Alonso Ortiz and the TAs Jan Valošek and Andjela Dimitrijevic for their feedback and quick response to my questions during the course. I also thank the global organizers of BrainHack School for creating/managing the training modules. 
 
 ### References
 
