@@ -1,4 +1,4 @@
-This file describes the (simple) procedure of preprocessing the data. The only preprocessing steps required to train an INR super-resolution model are: 
+This folder contains the files for preprocessing the data. The only preprocessing steps required to train an INR super-resolution model are: 
 
 1. Create two different views of the same subject by downsampling it on different anatomical planes. 
 2. Create a mask of the input image (which will later be used for computing the reconstruction accuracy)
@@ -21,11 +21,7 @@ The downsampled output will be saved in the same directory as the original image
 The script `create_image_mask.py` creates a binary mask of the input image. The usage of the script is as follows:
 
 ```bash
-python create_image_mask.py --image <path_to_image> --threshold <threshold_value>
+python create_image_mask.py --image <path_to_image> --method min
 ```
-where, `threshold_value` is the threshold value used to create the mask. It is recommended to use a threshold value of 0. For example, for creating a mask of the input image with a threshold value of 0.0, the command would be:
-
-```bash
-python create_image_mask.py --image <path_to_image> --threshold 0.0
-```
+where, `--method min` specifies that `skimage.filters.threshold_minimum` is used for automatic thresholding to create the mask. This is recommended over manually using a threshold value. 
 
