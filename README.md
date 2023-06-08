@@ -83,10 +83,17 @@ This section presents the super-resolution results and the ablation study analys
 
 The figure below shows a comparison between the original (ground-truth, GT) image (left) and the reconstructed image (right), both at 0.8 mm isotropic resolution. Focusing on the zoomed patch, we can observe that the prediction is smoother compared to the original image. 
 
-TODO: add figure from slide 
-
+<p align="center">
+<img width="800" alt="Screen Shot 2023-06-07 at 10 50 38 PM" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/cbbef089-756e-4562-ae76-ed02ecec729b">
+</p>
 
 One of the advantages of INRs is that images can be reconstructed at an arbitrary resolution. This means that one can generate a high resolution image that is not bounded by the resolution of the GT image. The figure below shows the model's prediction of 0.5 mm^3 isotropic image. For such outputs, it is important to note that one can only perform a visual assessment of the reconstruction quality as a quantitative assessment is infeasible due to the lack of GT image.
+
+<p align="center">
+<img width="500" alt="iso0 5" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/f784b057-1d4c-4007-933b-df82f5a58efe">
+
+</p>
+
 
 
 
@@ -101,9 +108,9 @@ A crucial step when training a NN to reconstruct a high-resolution image is the 
 The plots below show the SSIM (left) and PSNR (right) values as function of the dimensionality of the Fourier features (higher the metrics, the better). We observe that the reconstruction accuracy increases when increasing the Fourier feature dimensionality in both cases. 
 
 
-
-TODO: add plots
-
+<p align="center">
+<img width="800" alt="ff_map_dim_vs_ssim_psnr" src="https://github.com/brainhack-school2023/nagakarthik_project/assets/53445351/17893555-0ad9-4fe3-9893-7fb83165afa4">
+</p>
 
 
 ### Conclusions
