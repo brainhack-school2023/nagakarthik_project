@@ -1,17 +1,18 @@
 SETTINGS:
-  DIRECTORY: '/home/GRAMES.POLYMTL.CA/u114716/coursework/brain-hack/data/sci-zurich-rpi/sub-zh57' 
+  DIRECTORY: '/home/GRAMES.POLYMTL.CA/u114716/coursework/brain-hack/data/spine-generic/sub-amu01' 
   PROJECT_NAME: 'INRs'
-  GROUP_NAME: 'sci-zurich'
-  RUN_NAME: 'SIREN=512_sag-0.57-2.75_sag_T2w_0.75'
-  GPU_DEVICE: 3
+  GROUP_NAME: 'spine-generic'
+  RUN_NAME: 'FF_MAP=512_FFS=4_NUML=8_HID=1024_LR=0.0002_T2w_0.884_4.88_GT_0.5_mask-min'
+  GPU_DEVICE: 0
   NUM_WORKERS: 16
 
 DATASET:
-  SUBJECT_ID: 'sub-zh57' 
-  SESSION_ID: 'ses-01' 
-  VIEW1_LABEL: 'sag_T2w_0.57'  
-  VIEW2_LABEL: 'sag_T2w' 
-  GT_LABEL: 'sag_T2w_0.75' 
+  SUBJECT_ID: 'sub-amu01' 
+  SESSION_ID: '' 
+  VIEW1_LABEL: 'T2w_0.8x0.8x4.0'
+  VIEW2_LABEL: 'T2w_4.0x0.8x0.8' 
+  GT_LABEL: 'T2w_0.5'
+  GT_MASK_LABEL: 'T2w_0.5x0.5x0.5_mask_min' 
 
 TRAINING:
   SEED: 12
