@@ -71,7 +71,7 @@ The deliverables for this project are:
 * Introduction to INRs and references to existing literature --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/blob/main/inrs/intro_and_resources.md#inrs-for-super-resolution)
 * Data and preprocessing scripts used --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/data) and [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/code/preprocessing)
 * Code and the related documentation for training an INR --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/code)
-* Jupyter notebook containing the ablation study analysis --> can be found 
+* Jupyter notebook containing the ablation study analysis --> can be found [here](https://github.com/brainhack-school2023/nagakarthik_project/tree/main/notebook)
 
 
 ### Results 
